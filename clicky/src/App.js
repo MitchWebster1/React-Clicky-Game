@@ -4,7 +4,7 @@ import Card from './components/Card'
 import Header from './components/Header'
 import Title from './components/Title'
 import Footer from './components/Footer'
-import friends from './friens.json'
+import friends from './friends.json'
 import logo from './logo.svg'
 import './App.css'
 
