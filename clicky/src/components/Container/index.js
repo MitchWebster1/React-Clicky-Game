@@ -1,13 +1,18 @@
 import React, { Component } from 'react'
 import Card from '../Card'
+import Header from '../Header'
+import Title from '../Title'
+import Footer from '../Footer'
+import shuffle from '../../../node_modules/shuffle-array'
 import friends from '../../friends.json'
 import './style.css'
 
-class CardWrapper extends Component {
+class Container extends Component {
   state = {
     friends,
     score: 0,
-    topScore: 0
+    topScore: 0,
+    response: 'Click a picture to begin'
   }
 
   resetState = () => {
@@ -16,8 +21,9 @@ class CardWrapper extends Component {
       return obj
     })
     return this.setState({
-      friends: [...resetClick],
-      score: 0
+      friends: shuffle([...resetClick]),
+      score: 0,
+      response: 'You guessed incorrectly!'
     })
   }
 
@@ -25,9 +31,9 @@ class CardWrapper extends Component {
 
   topScore = () => {
     console.log(this.state.score)
-    if (this.state.score > this.state.topScore) {
+    if (this.state.score >= this.state.topScore) {
       console.log(this.state.score)
-      return this.setState({ topScore: this.state.score })
+      return this.setState({ topScore: this.state.score + 1 })
     }
   }
 
@@ -49,11 +55,10 @@ class CardWrapper extends Component {
     const newFriends = this.update(index, cardObj, this.state.friends)
 
     return this.setState({
-      friends: newFriends,
-      score: this.state.score + 1
+      friends: shuffle(newFriends),
+      score: this.state.score + 1,
+      response: 'You guessed correctly!'
     })
-    // console.log(id)
-    // console.log(arr)
   }
 
   gameLogic = id => {
@@ -66,20 +71,27 @@ class CardWrapper extends Component {
 
   render() {
     return (
-      <div className='wrapper'>
-        {this.state.friends.map(friend => (
-          <Card
-            gameLogic={this.gameLogic}
-            id={friend.id}
-            key={friend.id}
-            name={friend.name}
-            image={friend.image}
-            clicked={friend.clicked}
-          />
-        ))}
+      <div className='container'>
+        <Header
+          response={this.state.response}
+          score={this.state.score}
+          topScore={this.state.topScore}
+        />
+        <div className='wrapper'>
+          {this.state.friends.map(friend => (
+            <Card
+              gameLogic={this.gameLogic}
+              id={friend.id}
+              key={friend.id}
+              name={friend.name}
+              image={friend.image}
+              clicked={friend.clicked}
+            />
+          ))}
+        </div>
       </div>
     )
   }
 }
 
-export default CardWrapper
+export default Container
