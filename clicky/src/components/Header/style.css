@@ -1,0 +1,16 @@
+.headerBar {
+  min-height: 5rem;
+  position: fixed;
+  width: 100%;
+  z-index: 99;
+  background: #5133a4;
+  color: #fff;
+}
+
+.headerBar div {
+  width: 33.3%;
+  display: inline-block;
+  text-align: center;
+  padding: 1.25rem 0;
+  font-size: 2em;
+}

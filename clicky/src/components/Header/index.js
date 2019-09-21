@@ -1,12 +1,12 @@
 import React from 'react'
 import './style.css'
 
-function Header (props) {
+function Header(props) {
   return (
-    <main>
-      <div>Clicky Game</div>
-      <div>{props.response}</div>
-      <div>
+    <main className='headerBar'>
+      <div className='game'>Clicky Game</div>
+      <div className='response'>{props.response}</div>
+      <div className='score'>
         Score: {props.score} | Top Score: {props.topScore}
       </div>
     </main>

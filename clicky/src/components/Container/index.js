@@ -77,6 +77,7 @@ class Container extends Component {
           score={this.state.score}
           topScore={this.state.topScore}
         />
+        <Title />
         <div className='wrapper'>
           {this.state.friends.map(friend => (
             <Card
@@ -89,6 +90,7 @@ class Container extends Component {
             />
           ))}
         </div>
+        <Footer />
       </div>
     )
   }
